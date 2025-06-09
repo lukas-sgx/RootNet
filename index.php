@@ -436,6 +436,7 @@
                             <th>Adresse IP</th>
                             <th>Adresse MAC</th>
                             <th>Type</th>
+                            <th>Source</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -446,6 +447,7 @@
                             <td>192.168.0.105</td>
                             <td>AA:BB:CC:DD:EE:01</td>
                             <td>Ordinateur</td>
+                            <td>Statique</td>
                             <td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>
                         </tr>
                         <tr>
@@ -454,6 +456,7 @@
                             <td>192.168.0.110</td>
                             <td>BB:CC:DD:EE:FF:02</td>
                             <td>Mobile</td>
+                            <td>DHCP</td>
                             <td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>
                         </tr>
                         <tr>
@@ -462,6 +465,7 @@
                             <td>192.168.0.115</td>
                             <td>CC:DD:EE:FF:AA:03</td>
                             <td>Télévision</td>
+                            <td>Statique</td>
                             <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Wake-on-LAN</button></td>
                         </tr>
                         <tr>
@@ -470,6 +474,7 @@
                             <td>192.168.0.120</td>
                             <td>DD:EE:FF:AA:BB:04</td>
                             <td>Ordinateur portable</td>
+                            <td>DHCP</td>
                             <td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>
                         </tr>
                     </tbody>
@@ -713,13 +718,14 @@
                 html += `<td>${device.hostname ? device.hostname : ''}</td>`;
                 html += `<td>${device.ip || ''}</td>`;
                 html += `<td>${device.mac || ''}</td>`;
-                html += `<td></td>`;
-                html += `<td></td>`;
+                html += `<td>${device.type || ''}</td>`;
+                html += `<td>${device.source || ''}</td>`;
+                html += `<td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>`;
                 html += `</tr>`;
             });
             tbody.innerHTML = html;
         } catch (e) {
-            tbody.innerHTML = '<tr><td colspan="6">Erreur lors du scan réseau</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7">Erreur lors du scan réseau</td></tr>';
         }
     }
 

@@ -148,7 +148,48 @@ function get_all_devices($subnet) {
             }
         }
     }
+    // Après avoir construit chaque $devices[$ip]...
+    foreach ($devices as &$dev) {
+        // Toujours calculer le type
+        $dev['type'] = guess_device_type($dev['vendor'] ?? '', $dev['hostname'] ?? '', $dev['mac'] ?? '');
+        // Toujours forcer la présence de la source
+        if (!isset($dev['source']) || !$dev['source']) {
+            if (!empty($dev['mac']) && !empty($dev['vendor'])) {
+                $dev['source'] = 'nmap';
+            } elseif (!empty($dev['mac'])) {
+                $dev['source'] = 'arp';
+            } elseif (!empty($dev['ip'])) {
+                $dev['source'] = 'fping';
+            } else {
+                $dev['source'] = 'dns';
+            }
+        }
+    }
+    unset($dev);
     return array_values($devices);
+}
+
+function guess_device_type($vendor, $hostname, $mac) {
+    $vendor = strtolower($vendor ?? '');
+    $hostname = strtolower($hostname ?? '');
+    $mac = strtolower($mac ?? '');
+    if (strpos($vendor, 'apple') !== false || strpos($hostname, 'iphone') !== false || strpos($hostname, 'ipad') !== false) return 'phone/tablette Apple';
+    if (strpos($vendor, 'samsung') !== false || strpos($hostname, 'android') !== false) return 'phone/tablette Android';
+    if (strpos($vendor, 'intel') !== false || strpos($vendor, 'lenovo') !== false || strpos($vendor, 'dell') !== false || strpos($vendor, 'hp') !== false || strpos($vendor, 'asus') !== false || strpos($vendor, 'acer') !== false || strpos($vendor, 'msi') !== false || strpos($hostname, 'pc') !== false || strpos($hostname, 'laptop') !== false) return 'PC/Ordinateur';
+    if (strpos($vendor, 'raspberry') !== false) return 'Raspberry Pi';
+    if (strpos($vendor, 'printer') !== false || strpos($hostname, 'printer') !== false) return 'Imprimante';
+    if (strpos($vendor, 'lg') !== false || strpos($vendor, 'sony') !== false || strpos($vendor, 'philips') !== false || strpos($hostname, 'tv') !== false) return 'TV';
+    if (strpos($vendor, 'cisco') !== false || strpos($vendor, 'ubiquiti') !== false || strpos($vendor, 'tp-link') !== false || strpos($vendor, 'netgear') !== false) return 'Routeur/Switch';
+    if (strpos($vendor, 'google') !== false && strpos($hostname, 'cast') !== false) return 'Google Cast';
+    if (strpos($vendor, 'amazon') !== false && strpos($hostname, 'echo') !== false) return 'Amazon Echo';
+    if (strpos($vendor, 'nintendo') !== false || strpos($vendor, 'playstation') !== false || (strpos($vendor, 'sony') !== false && strpos($hostname, 'ps') !== false)) return 'Console de jeu';
+    if (strpos($vendor, 'camera') !== false || strpos($hostname, 'cam') !== false || strpos($hostname, 'ipcam') !== false) return 'Caméra IP';
+    if (strpos($vendor, 'sonos') !== false || strpos($vendor, 'bose') !== false || strpos($hostname, 'speaker') !== false) return 'Enceinte connectée';
+    if (strpos($vendor, 'yeelight') !== false || strpos($vendor, 'hue') !== false || strpos($vendor, 'tuya') !== false || strpos($hostname, 'light') !== false) return 'Éclairage connecté';
+    if (strpos($vendor, 'synology') !== false || strpos($vendor, 'qnap') !== false || strpos($hostname, 'nas') !== false) return 'NAS';
+    if (strpos($vendor, 'grandstream') !== false || strpos($vendor, 'yealink') !== false || strpos($hostname, 'voip') !== false) return 'Téléphone VoIP';
+    if (strpos($vendor, 'somfy') !== false || strpos($vendor, 'legrand') !== false || strpos($vendor, 'delta dore') !== false) return 'Domotique';
+    return '';
 }
 
 $subnet = null;
