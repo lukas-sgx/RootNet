@@ -338,7 +338,6 @@
         <div class="nav-tabs">
             <button class="nav-tab active" onclick="showTab('dashboard')">📊 Tableau de bord</button>
             <button class="nav-tab" onclick="showTab('network')">🌐 Configuration Réseau</button>
-            <button class="nav-tab" onclick="showTab('security')">🔒 Sécurité</button>
             <button class="nav-tab" onclick="showTab('devices')">📱 Appareils</button>
             <button class="nav-tab" onclick="showTab('monitoring')">📈 Monitoring</button>
             <button class="nav-tab" onclick="showTab('logs')">📋 Logs</button>
@@ -388,86 +387,39 @@
 
         <!-- Network Configuration Tab -->
         <div id="network" class="tab-content">
-            <div class="grid">
-                <div class="card">
-                    <h3>📡 Configuration LAN</h3>
-                    <div class="form-group">
-                        <label>Adresse IP LAN</label>
-                        <span class="lan-ip"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Masque de sous-réseau</label>
-                        <span class="lan-mask"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Passerelle</label>
-                        <span class="lan-gateway"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Nom du WiFi (SSID)</label>
-                        <span class="lan-ssid"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Security Tab -->
-        <div id="security" class="tab-content">
-            <div class="alert alert-warning">
-                ⚠️ 3 tentatives de connexion suspectes détectées dans les dernières 24h
-            </div>
-
-            <div class="grid">
-                <div class="card">
-                    <h3>🛡️ Pare-feu</h3>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" checked> Activer le pare-feu
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" checked> Bloquer les pings externes
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox"> Activer le filtrage MAC
-                        </label>
-                    </div>
-                    <button class="btn btn-success">Appliquer les règles</button>
-                </div>
-
-                <div class="card">
-                    <h3>🔐 Contrôle d'accès</h3>
-                    <div class="form-group">
-                        <label>Changer le mot de passe admin</label>
-                        <input type="password" class="form-control" placeholder="Nouveau mot de passe">
-                    </div>
-                    <div class="form-group">
-                        <label>Confirmer le mot de passe</label>
-                        <input type="password" class="form-control" placeholder="Confirmer">
-                    </div>
-                    <button class="btn btn-primary">Changer le mot de passe</button>
-                </div>
-
-                <div class="card">
-                    <h3>🚨 Détection d'intrusion</h3>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" checked> Activer IDS/IPS
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" checked> Alertes par email
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>Email d'alerte</label>
-                        <input type="email" class="form-control" value="admin@rootnet.local">
-                    </div>
-                    <button class="btn btn-danger">Configurer alertes</button>
+            <div class="grid" style="justify-content: center;">
+                <div class="card" style="max-width: 500px; margin: auto; background: #fff; box-shadow: 0 4px 24px rgba(102,126,234,0.08); border: 1.5px solid #e2e8f0;">
+                    <h3 style="margin-bottom: 25px; text-align:center; color:#4a5568;">📡 Configuration LAN</h3>
+                    <table style="width:100%; border-collapse:separate; border-spacing:0 10px;">
+                        <tr>
+                            <td style="font-weight:600; color:#4a5568; padding:6px 0;">Interface active</td>
+                            <td style="text-align:right;"><span class="lan-iface" style="font-weight:bold; color:#2d3748;"></span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600; color:#4a5568; padding:6px 0;">Adresse IP LAN</td>
+                            <td style="text-align:right;"><span class="lan-ip" style="font-weight:bold; color:#2d3748;"></span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600; color:#4a5568; padding:6px 0;">Masque de sous-réseau</td>
+                            <td style="text-align:right;"><span class="lan-mask" style="font-weight:bold; color:#2d3748;"></span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600; color:#4a5568; padding:6px 0;">Passerelle</td>
+                            <td style="text-align:right;"><span class="lan-gateway" style="font-weight:bold; color:#2d3748;"></span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600; color:#4a5568; padding:6px 0;">DNS</td>
+                            <td style="text-align:right;"><span class="lan-dns" style="font-weight:bold; color:#2d3748;"></span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600; color:#4a5568; padding:6px 0;">Nom d'hôte</td>
+                            <td style="text-align:right;"><span class="lan-hostname" style="font-weight:bold; color:#2d3748;"></span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600; color:#4a5568; padding:6px 0;">Nom du WiFi (SSID)</td>
+                            <td style="text-align:right;"><span class="lan-ssid" style="font-weight:bold; color:#2d3748;"></span></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -628,6 +580,11 @@
         if (event && event.target) {
             event.target.classList.add('active');
         }
+
+        // Charger dynamiquement les appareils connectés si l'onglet 'devices' est sélectionné
+        if (tabName === 'devices') {
+            updateDevicesTable();
+        }
     }
 
     // Fonction pour récupérer et mettre à jour les stats système
@@ -649,13 +606,11 @@
             }
             
             const data = await response.json();
-            console.log('Données reçues:', data); // Debug
 
             // Vérification des données reçues
             if (!data) {
                 throw new Error('Aucune donnée reçue');
             }
-            console.log('Données reçues:', data);
 
             // Mise à jour de l'alerte en succès
             alertElement.className = 'alert alert-success';
@@ -718,13 +673,20 @@
 
             // Mise à jour de la configuration réseau
             const netconf = data.network_config;
+            window.lastNetconf = netconf;
             if (netconf) {
+                const ifaceSpan = document.querySelector('.lan-iface');
+                if (ifaceSpan) ifaceSpan.textContent = netconf.interface || '';
                 const lanIpSpan = document.querySelector('.lan-ip');
                 if (lanIpSpan) lanIpSpan.textContent = netconf.ip || '';
                 const maskSpan = document.querySelector('.lan-mask');
                 if (maskSpan) maskSpan.textContent = netconf.mask || '';
                 const gwSpan = document.querySelector('.lan-gateway');
                 if (gwSpan) gwSpan.textContent = netconf.gateway || '';
+                const dnsSpan = document.querySelector('.lan-dns');
+                if (dnsSpan) dnsSpan.textContent = netconf.dns || '';
+                const hostnameSpan = document.querySelector('.lan-hostname');
+                if (hostnameSpan) hostnameSpan.textContent = netconf.hostname || '';
                 const ssidSpan = document.querySelector('.lan-ssid');
                 if (ssidSpan) ssidSpan.textContent = netconf.ssid || '';
             }
@@ -733,6 +695,31 @@
             console.error('Erreur:', error);
             alertElement.className = 'alert alert-danger';
             alertElement.innerHTML = `❌ Erreur de connexion au serveur - ${error.message}`;
+        }
+    }
+
+    // Fonction pour charger dynamiquement les appareils connectés
+    async function updateDevicesTable() {
+        const tbody = document.querySelector('#devices .device-table tbody');
+        try {
+            const response = await fetch('get_devices.php');
+            if (!response.ok) return;
+            const data = await response.json();
+            const devices = data.devices || [];
+            let html = '';
+            devices.forEach(device => {
+                html += `<tr>`;
+                html += `<td><span class="status-indicator status-online"></span>En ligne</td>`;
+                html += `<td>${device.hostname ? device.hostname : ''}</td>`;
+                html += `<td>${device.ip || ''}</td>`;
+                html += `<td>${device.mac || ''}</td>`;
+                html += `<td></td>`;
+                html += `<td></td>`;
+                html += `</tr>`;
+            });
+            tbody.innerHTML = html;
+        } catch (e) {
+            tbody.innerHTML = '<tr><td colspan="6">Erreur lors du scan réseau</td></tr>';
         }
     }
 
