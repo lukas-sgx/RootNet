@@ -53,7 +53,7 @@ RootNet est une interface web d'administration réseau permettant de surveiller,
 
 ## Auteurs
 
-- [Votre nom ou pseudo]
+- Lukas-sgx
 
 ## Licence
 
