@@ -214,19 +214,24 @@
 
         .device-table th,
         .device-table td {
-            padding: 12px;
+            padding: 10px 8px;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
         }
 
         .device-table th {
             background: #f7fafc;
+            font-size: 15px;
             font-weight: 600;
-            color: #4a5568;
+            letter-spacing: 0.5px;
         }
 
         .device-table tr:hover {
-            background: #f7fafc;
+            background: #f0f4f8;
+        }
+
+        .device-table td {
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
         }
 
         .status-indicator {
@@ -309,6 +314,280 @@
             .nav-tabs { flex-wrap: wrap; }
             .grid { grid-template-columns: 1fr; }
         }
+
+        /* Styles pour le modal */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #device-modal .modal-content {
+  max-width: 370px;
+  width: 95vw;
+  margin: auto;
+  border-radius: 18px;
+  background: #f9fafb;
+  box-shadow: 0 8px 32px #0002;
+  padding: 32px 24px 24px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#device-modal .modal-title {
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #2d3748;
+  letter-spacing: 0.5px;
+}
+
+#device-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+#device-modal .modal-body button {
+  width: 100%;
+  border-radius: 12px;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 13px 0;
+  transition: background 0.18s, color 0.18s;
+  margin-bottom: 0;
+}
+
+#device-modal .modal-body .btn-primary { background: #6c47c7; color: #fff; }
+#device-modal .modal-body .btn-primary:hover { background: #4b2997; }
+#device-modal .modal-body .btn-warning { background: #f2994a; color: #fff; }
+#device-modal .modal-body .btn-warning:hover { background: #c97a2b; }
+#device-modal .modal-body .btn-danger { background: #eb5757; color: #fff; }
+#device-modal .modal-body .btn-danger:hover { background: #b92d2d; }
+#device-modal .modal-body .btn-success { background: #27ae60; color: #fff; }
+#device-modal .modal-body .btn-success:hover { background: #168f4e; }
+#device-modal .modal-body .btn-secondary { background: #e2e8f0; color: #222; }
+#device-modal .modal-body .btn-secondary:hover { background: #cbd5e1; }
+
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 22px;
+            cursor: pointer;
+            color: #888;
+            background: none;
+            border: none;
+            transition: color 0.18s;
+        }
+
+        .close-modal:hover {
+            color: #e53e3e;
+        }
+
+        #device-modal .modal-content .btn.btn-secondary.close-modal {
+  position: static;
+  float: left;
+  margin-right: 10px;
+  font-size: 1.1em;
+  font-weight: 700;
+  background: #fff;
+  color: #222;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  padding: 8px 18px;
+  box-shadow: none;
+}
+
+#device-modal .modal-content .btn.btn-secondary.close-modal:hover {
+  background: #f0f4f8;
+  color: #b92d2d;
+}
+
+#device-modal .modal-content .btn.modal-confirm {
+  font-size: 1.1em;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 8px 18px;
+  background: #eb5757;
+  color: #fff;
+  border: none;
+  margin-left: 10px;
+}
+
+#device-modal .modal-content .btn.modal-confirm:hover {
+  background: #b92d2d;
+}
+
+.device-table th, .device-table td {
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.device-table th {
+  background: #f7fafc;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.device-table tr:hover {
+  background: #f0f4f8;
+}
+
+.btn-action-menu {
+  background: none;
+  border: none;
+  color: #4a5568;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  margin: 0 auto;
+}
+
+.btn-action-menu:hover {
+  background: #e2e8f0;
+  color: #6c47c7;
+  box-shadow: 0 2px 8px #6c47c71a;
+}
+
+/* Styles pour le modal */
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#device-modal.active { display: flex; }
+
+#device-modal .modal-content {
+  max-width: 370px;
+  width: 95vw;
+  margin: auto;
+  border-radius: 18px;
+  background: #f9fafb;
+  box-shadow: 0 8px 32px #0002;
+  padding: 32px 24px 24px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#device-modal .modal-title {
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #2d3748;
+  letter-spacing: 0.5px;
+}
+
+#device-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+#device-modal .modal-body button {
+  width: 100%;
+  border-radius: 12px;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 13px 0;
+  transition: background 0.18s, color 0.18s;
+  margin-bottom: 0;
+}
+
+#device-modal .modal-body .btn-primary { background: #6c47c7; color: #fff; }
+#device-modal .modal-body .btn-primary:hover { background: #4b2997; }
+#device-modal .modal-body .btn-warning { background: #f2994a; color: #fff; }
+#device-modal .modal-body .btn-warning:hover { background: #c97a2b; }
+#device-modal .modal-body .btn-danger { background: #eb5757; color: #fff; }
+#device-modal .modal-body .btn-danger:hover { background: #b92d2d; }
+#device-modal .modal-body .btn-success { background: #27ae60; color: #fff; }
+#device-modal .modal-body .btn-success:hover { background: #168f4e; }
+#device-modal .modal-body .btn-secondary { background: #e2e8f0; color: #222; }
+#device-modal .modal-body .btn-secondary:hover { background: #cbd5e1; }
+
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 22px;
+            cursor: pointer;
+            color: #888;
+            background: none;
+            border: none;
+            transition: color 0.18s;
+        }
+
+        .close-modal:hover {
+            color: #e53e3e;
+        }
+
+        #device-modal .modal-content .btn.btn-secondary.close-modal {
+  position: static;
+  float: left;
+  margin-right: 10px;
+  font-size: 1.1em;
+  font-weight: 700;
+  background: #fff;
+  color: #222;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  padding: 8px 18px;
+  box-shadow: none;
+}
+
+#device-modal .modal-content .btn.btn-secondary.close-modal:hover {
+  background: #f0f4f8;
+  color: #b92d2d;
+}
+
+#device-modal .modal-content .btn.modal-confirm {
+  font-size: 1.1em;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 8px 18px;
+  background: #eb5757;
+  color: #fff;
+  border: none;
+  margin-left: 10px;
+}
+
+#device-modal .modal-content .btn.modal-confirm:hover {
+  background: #b92d2d;
+}
     </style>
 </head>
 <body>
@@ -390,7 +669,7 @@
             <div class="grid" style="justify-content: center;">
                 <div class="card" style="max-width: 500px; margin: auto; background: #fff; box-shadow: 0 4px 24px rgba(102,126,234,0.08); border: 1.5px solid #e2e8f0;">
                     <h3 style="margin-bottom: 25px; text-align:center; color:#4a5568;">📡 Configuration LAN</h3>
-                    <table style="width:100%; border-collapse:separate; border-spacing:0 10px;">
+                    <table style="width:100%;  border-spacing:0 10px;">
                         <tr>
                             <td style="font-weight:600; color:#4a5568; padding:6px 0;">Interface active</td>
                             <td style="text-align:right;"><span class="lan-iface" style="font-weight:bold; color:#2d3748;"></span></td>
@@ -427,8 +706,8 @@
         <!-- Devices Tab -->
         <div id="devices" class="tab-content">
             <div class="card">
-                <h3>📱 Appareils connectés (24 appareils)</h3>
-                <table class="device-table">
+                <h3>📱 Appareils connectés</h3>
+                <table class="device-table" style="width:100%; border-spacing:0 8px; background:#fff;">
                     <thead>
                         <tr>
                             <th>Statut</th>
@@ -436,48 +715,10 @@
                             <th>Adresse IP</th>
                             <th>Adresse MAC</th>
                             <th>Type</th>
-                            <th>Source</th>
-                            <th>Actions</th>
+                            <th style="text-align:center;">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="status-indicator status-online"></span>En ligne</td>
-                            <td>PC-Bureau-01</td>
-                            <td>192.168.0.105</td>
-                            <td>AA:BB:CC:DD:EE:01</td>
-                            <td>Ordinateur</td>
-                            <td>Statique</td>
-                            <td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>
-                        </tr>
-                        <tr>
-                            <td><span class="status-indicator status-online"></span>En ligne</td>
-                            <td>iPhone-Marie</td>
-                            <td>192.168.0.110</td>
-                            <td>BB:CC:DD:EE:FF:02</td>
-                            <td>Mobile</td>
-                            <td>DHCP</td>
-                            <td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>
-                        </tr>
-                        <tr>
-                            <td><span class="status-indicator status-offline"></span>Hors ligne</td>
-                            <td>Smart-TV-Salon</td>
-                            <td>192.168.0.115</td>
-                            <td>CC:DD:EE:FF:AA:03</td>
-                            <td>Télévision</td>
-                            <td>Statique</td>
-                            <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">Wake-on-LAN</button></td>
-                        </tr>
-                        <tr>
-                            <td><span class="status-indicator status-online"></span>En ligne</td>
-                            <td>Laptop-Pierre</td>
-                            <td>192.168.0.120</td>
-                            <td>DD:EE:FF:AA:BB:04</td>
-                            <td>Ordinateur portable</td>
-                            <td>DHCP</td>
-                            <td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
@@ -558,6 +799,19 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Modal générique -->
+        <div id="device-modal" class="modal" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1000; align-items:center; justify-content:center;">
+          <div class="modal-content" style="background:#fff; padding:30px; border-radius:8px; min-width:300px; max-width:90vw; box-shadow:0 8px 32px #0002; position:relative;">
+            <span class="close-modal" style="position:absolute; right:15px; top:10px; font-size:22px; cursor:pointer;">&times;</span>
+            <h4 class="modal-title"></h4>
+            <div class="modal-body" style="margin:20px 0;"></div>
+            <div style="text-align:right;">
+              <button class="btn btn-secondary close-modal">Annuler</button>
+              <button class="btn btn-danger modal-confirm">Confirmer</button>
+            </div>
+          </div>
         </div>
     </div>
 <script>
@@ -714,20 +968,72 @@
             let html = '';
             devices.forEach(device => {
                 html += `<tr>`;
-                html += `<td><span class="status-indicator status-online"></span>En ligne</td>`;
-                html += `<td>${device.hostname ? device.hostname : ''}</td>`;
-                html += `<td>${device.ip || ''}</td>`;
-                html += `<td>${device.mac || ''}</td>`;
+                html += `<td style='text-align:center;'><span class="status-indicator status-online"></span>En ligne</td>`;
+                html += `<td style='font-weight:bold;'>${device.hostname ? device.hostname : ''}</td>`;
+                html += `<td style='font-family:monospace;'>${device.ip || ''}</td>`;
+                html += `<td style='font-family:monospace;'>${device.mac || ''}</td>`;
                 html += `<td>${device.type || ''}</td>`;
-                html += `<td>${device.source || ''}</td>`;
-                html += `<td><button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Bloquer</button></td>`;
+                html += `<td style='text-align:center;'>`;
+                html += `<button class="btn-action-menu" data-ip="${device.ip}" data-mac="${device.mac}" title="Actions"><span style='font-size:22px;'>⋮</span></button>`;
+                html += `</td>`;
                 html += `</tr>`;
             });
             tbody.innerHTML = html;
+            setTimeout(() => {
+              document.querySelectorAll('.btn-action-menu').forEach(btn => {
+                btn.onclick = function(e) {
+                  e.preventDefault();
+                  const ip = this.getAttribute('data-ip');
+                  const mac = this.getAttribute('data-mac');
+                  showDeviceActionModal(ip, mac);
+                };
+              });
+            }, 10);
         } catch (e) {
-            tbody.innerHTML = '<tr><td colspan="7">Erreur lors du scan réseau</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6">Erreur lors du scan réseau</td></tr>';
         }
     }
+
+    // Nouveau modal d'action
+    function showDeviceActionModal(ip, mac) {
+    const modal = document.getElementById('device-modal');
+    const title = modal.querySelector('.modal-title');
+    const body = modal.querySelector('.modal-body');
+    const confirmBtn = modal.querySelector('.modal-confirm');
+    title.innerHTML = `<span style='font-size:1.1em;'>Actions pour <span style='color:#5a4ee6'>${ip}</span></span>`;
+    body.innerHTML = `
+      <button class='btn btn-primary' onclick=\"confirmDeviceAction('scan','${ip}','${mac}')\"><span>🔎</span>Scan ports</button>
+      <button class='btn btn-warning' onclick=\"confirmDeviceAction('arp','${ip}','${mac}')\"><span>🛡️</span>ARP spoof</button>
+      <button class='btn btn-danger' onclick=\"confirmDeviceAction('deauth','${ip}','${mac}')\"><span>🚫</span>Deauth WiFi</button>
+      <button class='btn btn-success' onclick=\"confirmDeviceAction('wol','${ip}','${mac}')\"><span>⚡</span>Wake-on-LAN</button>
+      <button class='btn btn-secondary' onclick=\"confirmDeviceAction('ping','${ip}','${mac}')\"><span>📶</span>Ping</button>
+    `;
+    confirmBtn.style.display = 'none';
+    modal.classList.add('active');
+    modal.style.display = 'flex';
+    modal.querySelectorAll('.close-modal').forEach(btn => btn.onclick = () => { modal.classList.remove('active'); modal.style.display = 'none'; });
+}
+
+    // Confirmation d'action
+    function confirmDeviceAction(action, ip, mac) {
+    const modal = document.getElementById('device-modal');
+    const title = modal.querySelector('.modal-title');
+    const body = modal.querySelector('.modal-body');
+    const confirmBtn = modal.querySelector('.modal-confirm');
+    let actionText = '';
+    if (action === 'scan') actionText = `Scanner les ports de <b>${ip}</b> ?`;
+    if (action === 'arp') actionText = `Lancer un ARP spoof sur <b>${ip}</b> ?`;
+    if (action === 'deauth') actionText = `Déconnecter (deauth) <b>${mac || ip}</b> du WiFi ?`;
+    if (action === 'wol') actionText = `Envoyer un Wake-on-LAN à <b>${mac || ip}</b> ?`;
+    if (action === 'ping') actionText = `Pinger <b>${ip}</b> ?`;
+    title.innerHTML = 'Confirmation action';
+    body.innerHTML = actionText;
+    confirmBtn.style.display = '';
+    confirmBtn.onclick = function() {
+        alert('Action non implémentée côté backend.');
+        modal.style.display = 'none';
+    };
+}
 
     // Fonction d'initialisation au chargement DOM
     document.addEventListener('DOMContentLoaded', function() {
