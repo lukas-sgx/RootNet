@@ -1,6 +1,6 @@
 # RootNet
 
-RootNet est une interface web d'administration réseau permettant de surveiller, diagnostiquer et gérer les appareils connectés à votre réseau local.
+RootNet est une interface web d'administration réseau permettant de surveiller, diagnostiquer, gérer les appareils connectés et lancer des attaque sur votre réseau local.
 
 ## Fonctionnalités
 
